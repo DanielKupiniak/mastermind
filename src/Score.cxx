@@ -5,7 +5,7 @@
 
 namespace MasterMind {
 Score::Score(Peg c0, Peg c1, Peg c2, Peg c3) : mExpected{c0, c1, c2, c3} {}
-void Score::hit(CodePeg& codePeg) {
+void Score::hit(PegPattern& codePeg) {
   mResult.clear();
   std::set<Pos> count;
   for (auto& e : codePeg.getCos()) {

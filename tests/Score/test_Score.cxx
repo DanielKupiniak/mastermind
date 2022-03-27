@@ -1,13 +1,13 @@
 #include <gtest/gtest.h>
 
-#include "Peg.h"
+#include "PegPattern.h"
 #include "Score.h"
 #include "utils.h"
 
 using namespace MasterMind;
 
 TEST(Score, OneBlack) {
-  CodePeg entered(Peg::Black, Peg::Red, Peg::Yellow, Peg::Red);
+  PegPattern entered(Peg::Black, Peg::Red, Peg::Yellow, Peg::Red);
   Score score(Peg::Black, Peg::Blue, Peg::Green, Peg::Orange);
   std::vector<Result> expectedResult = {Result::Black, Result::Missed,
                                         Result::Missed, Result::Missed};
@@ -17,7 +17,7 @@ TEST(Score, OneBlack) {
 }
 
 TEST(Score, OneWhite) {
-  CodePeg entered(Peg::Red, Peg::Green, Peg::Yellow, Peg::Green);
+  PegPattern entered(Peg::Red, Peg::Green, Peg::Yellow, Peg::Green);
   Score score(Peg::Black, Peg::Blue, Peg::Red, Peg::Orange);
 
   std::vector<Result> expected = {Result::White, Result::Missed, Result::Missed,
@@ -28,7 +28,7 @@ TEST(Score, OneWhite) {
 }
 
 TEST(Score, OneWhiteOneBlack) {
-  CodePeg entered(Peg::Red, Peg::Green, Peg::Red, Peg::Black);
+  PegPattern entered(Peg::Red, Peg::Green, Peg::Red, Peg::Black);
   Score score(Peg::Black, Peg::Blue, Peg::Red, Peg::Orange);
 
   std::vector<Result> expected = {Result::Black, Result::White, Result::Missed,
@@ -39,7 +39,7 @@ TEST(Score, OneWhiteOneBlack) {
 }
 
 TEST(Score, TwoWhiteTwoBlack) {
-  CodePeg entered(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
+  PegPattern entered(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
   Score score(Peg::Black, Peg::Red, Peg::Green, Peg::Orange);
 
   std::vector<Result> expected = {Result::Black, Result::Black, Result::White,

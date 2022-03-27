@@ -5,12 +5,12 @@
 
 namespace MasterMind {
 
-class CodePeg {
+class PegPattern {
  private:
   std::array<Cos, 4> mCodePeg;
 
  public:
-  CodePeg(Peg c0, Peg c1, Peg c2, Peg c3);
+  PegPattern(Peg c0, Peg c1, Peg c2, Peg c3);
 
   Pos match(const Cos& cos);
 

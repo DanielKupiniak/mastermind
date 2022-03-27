@@ -1,14 +1,14 @@
-add_executable(test_Score
-test_Score.cxx
+add_executable(test_pegpattern
+test_PegPattern.cxx
 ${PROJECT_SOURCE_DIR}/src/PegPattern.cxx
 ${PROJECT_SOURCE_DIR}/src/Score.cxx
 )
 
 target_link_libraries(
-    test_Score
+    test_pegpattern
     GTest::GTest
     GTest::Main
     )
 
 include(GoogleTest)
-gtest_discover_tests(test_Score)
+gtest_discover_tests(test_pegpattern)

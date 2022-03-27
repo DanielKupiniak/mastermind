@@ -1,3 +1,3 @@
 find_package(GTest REQUIRED)
-add_subdirectory(Peg)
+add_subdirectory(PegPattern)
 add_subdirectory(Score)

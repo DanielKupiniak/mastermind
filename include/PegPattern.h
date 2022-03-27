@@ -1,5 +1,5 @@
 #pragma once
-#include <array>
+#include <vector>
 
 #include "utils.h"
 
@@ -7,15 +7,16 @@ namespace MasterMind {
 
 class PegPattern {
  private:
-  std::array<CodePeg, 4> mCodePeg;
+  std::vector<CodePeg> mPegSeq;
 
  public:
-  PegPattern(Peg c0, Peg c1, Peg c2, Peg c3);
+  PegPattern(const Peg& c0, const Peg& c1, const Peg& c2, const Peg& c3);
+  Peg at(const Pos& pos) const;
+  Pos find(const Peg& cos);
+  bool isUnique() const;
+  size_t size() const;
 
-  Pos match(const CodePeg& cos);
-
-  bool isUnique();
-
-  std::array<CodePeg, 4> getCodePeg() const;
+  std::vector<CodePeg> getPegSeq() const;
 };
+
 }  // namespace MasterMind

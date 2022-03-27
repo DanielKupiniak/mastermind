@@ -6,5 +6,5 @@ enum class Pos { C0, C1, C2, C3, None };
 enum class KeyPeg { Black, White, Missed };
 
 using CodePeg = std::pair<Peg, Pos>;
-
+using Result = std::vector<KeyPeg>;
 }  // namespace MasterMind

@@ -1,6 +1,7 @@
 add_executable(mastermind
     main.cpp
-    Peg.cxx)
+    Peg.cxx
+    Score.cxx)
 
 # target_link_libraries(
 #     mastermind

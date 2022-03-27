@@ -20,7 +20,7 @@ TEST(PegPattern, findPeg) {
   EXPECT_EQ(Pos::C1, actual.find(Peg::Black));
   EXPECT_EQ(Pos::C2, actual.find(Peg::Orange));
   EXPECT_EQ(Pos::C3, actual.find(Peg::Green));
-  EXPECT_EQ(Pos::None, actual.find(Peg::Blue));
+  EXPECT_EQ(Pos::None, actual.find(Peg::Purple));
   EXPECT_EQ(Pos::None, actual.find(Peg::Yellow));
 }
 

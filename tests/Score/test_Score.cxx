@@ -8,7 +8,7 @@ using namespace MasterMind;
 
 TEST(Score, OneBlack) {
   PegPattern entered(Peg::Black, Peg::Red, Peg::Yellow, Peg::Red);
-  Score score(Peg::Black, Peg::Blue, Peg::Green, Peg::Orange);
+  Score score(Peg::Black, Peg::Purple, Peg::Green, Peg::Orange);
   Result expectedResult = {KeyPeg::Black, KeyPeg::Missed, KeyPeg::Missed,
                            KeyPeg::Missed};
   score.hit(entered);
@@ -18,7 +18,7 @@ TEST(Score, OneBlack) {
 
 TEST(Score, OneWhite) {
   PegPattern entered(Peg::Red, Peg::Green, Peg::Yellow, Peg::Green);
-  Score score(Peg::Black, Peg::Blue, Peg::Red, Peg::Orange);
+  Score score(Peg::Black, Peg::Purple, Peg::Red, Peg::Orange);
 
   Result expected = {KeyPeg::White, KeyPeg::Missed, KeyPeg::Missed,
                      KeyPeg::Missed};
@@ -29,7 +29,7 @@ TEST(Score, OneWhite) {
 
 TEST(Score, OneWhiteOneBlack) {
   PegPattern entered(Peg::Red, Peg::Green, Peg::Red, Peg::Black);
-  Score score(Peg::Black, Peg::Blue, Peg::Red, Peg::Orange);
+  Score score(Peg::Black, Peg::Purple, Peg::Red, Peg::Orange);
 
   Result expected = {KeyPeg::Black, KeyPeg::White, KeyPeg::Missed,
                      KeyPeg::Missed};
@@ -73,7 +73,7 @@ TEST(Score, FourWhitek) {
 
 TEST(Score, FourNone) {
   PegPattern entered(Peg::Orange, Peg::Orange, Peg::Green, Peg::Green);
-  Score score(Peg::Yellow, Peg::Black, Peg::Blue, Peg::Red);
+  Score score(Peg::Yellow, Peg::Black, Peg::Purple, Peg::Red);
 
   Result expected = {KeyPeg::Missed, KeyPeg::Missed, KeyPeg::Missed,
                      KeyPeg::Missed};

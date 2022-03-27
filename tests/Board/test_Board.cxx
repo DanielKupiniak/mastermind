@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
 
+#include <iterator>
 #include <string>
 #include <vector>
 
 #include "Board.h"
 #include "PegPattern.h"
 #include "utils.h"
-
 using namespace MasterMind;
 
 TEST(Board, PrintScore) {
@@ -35,4 +35,10 @@ TEST(Board, youAreTheWinner) {
   result = {KeyPeg::Black, KeyPeg::Black, KeyPeg::Black, KeyPeg::White};
   allBlacks = board.youAreTheWinner(result);
   EXPECT_FALSE(allBlacks);
+}
+
+TEST(Board, printPegPattern) {
+  Board board;
+  PegPattern expected(Peg::Red, Peg::Black, Peg::Orange, Peg::Green);
+  EXPECT_EQ("1452", board.printPegPattern(expected));
 }

@@ -38,4 +38,16 @@ bool Board::youAreTheWinner(const Result &result) {
   });
 }
 
+std::string Board::printPegPattern(const PegPattern &pattern) {
+  std::map<Peg, std::string> reversePeg;
+  for (auto &e : mPeg) {
+    reversePeg.insert(std::make_pair(e.second, e.first));
+  }
+  std::string str;
+  for (auto &e : pattern.getPegSeq()) {
+    str += reversePeg.at(e.first);
+  }
+  return str;
+}
+
 }  // namespace MasterMind

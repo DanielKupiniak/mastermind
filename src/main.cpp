@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <ctime>
 #include <iostream>
 #include <vector>
 
@@ -26,7 +28,15 @@ std::vector<std::string> convertTovector(std::string &line) {
 }
 
 PegPattern generateSecret() {
-  std::vector<Peg> pegs = {Peg::Black, Peg::Orange, Peg::Red, Peg::Yellow};
+  std::srand(unsigned(std::time(nullptr)));
+  std::vector<Peg> initPegs = {Peg::Black,  Peg::Green, Peg::Orange,
+                               Peg::Purple, Peg::Red,   Peg::Yellow};
+  std::vector<Peg> pegs;
+  for (int i = 0; i < 4; i++) {
+    int PegPos = std::rand() % static_cast<int>(initPegs.size());
+    pegs.push_back(initPegs[PegPos]);
+    initPegs.erase(initPegs.begin() + PegPos);
+  }
   return std::move(PegPattern(pegs.at(0), pegs.at(1), pegs.at(2), pegs.at(3)));
 }
 
@@ -43,6 +53,7 @@ int main(int, char **) {
 
   Board board;
   auto secret = generateSecret();
+  std::cout << board.printPegPattern(secret) << std::endl;
   Score score(secret);
   std::vector<std::string> pegs;
   bool isGuessed = false;
@@ -72,6 +83,7 @@ int main(int, char **) {
   if (isGuessed) {
     std::cout << "You are the CodeBreaker!!!" << std::endl;
   } else {
-    std::cout << "Maybe next time :(" << std::endl;
+    std::cout << "Maybe next time :(. Secret PegPattern: "
+              << board.printPegPattern(secret) << std::endl;
   }
 }

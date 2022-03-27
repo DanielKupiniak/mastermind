@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace MasterMind {
-enum class Peg { Red, Green, Purple, Black, Orange, Yellow };
+enum class Peg : int { Red, Green, Purple, Black, Orange, Yellow };
 enum class Pos { C0, C1, C2, C3, None };
 enum class KeyPeg { Black, White, Missed };
 

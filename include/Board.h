@@ -22,5 +22,6 @@ class Board {
   PegPattern translateToPegPattern(const std::vector<std::string> input);
   bool validateInput(const std::vector<std::string> input);
   bool youAreTheWinner(const Result &result);
+  std::string printPegPattern(const PegPattern &pattern);
 };
 }  // namespace MasterMind

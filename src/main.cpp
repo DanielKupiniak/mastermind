@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "Board.h"
+#include "PegMatcher.h"
 #include "PegPattern.h"
-#include "Score.h"
 using namespace MasterMind;
 
 void printEnterLineInfo(const int attempt) {
@@ -54,7 +54,7 @@ int main(int, char **) {
   Board board;
   auto secret = generateSecret();
   std::cout << board.printPegPattern(secret) << std::endl;
-  Score score(secret);
+  PegMatcher pegMatcher(secret);
   std::vector<std::string> pegs;
   bool isGuessed = false;
   for (int i = 0; (i < 10) && (false == isGuessed); i++) {
@@ -70,8 +70,8 @@ int main(int, char **) {
         isOk = board.validateInput(pegs);
         if (isOk) {
           auto guess = board.translateToPegPattern(pegs);
-          score.hit(guess);
-          auto result = score.getResult();
+          pegMatcher.run(guess);
+          auto result = pegMatcher.getResult();
           std::cout << board.printRow(result) << std::endl;
           isGuessed = board.youAreTheWinner(result);
         } else {

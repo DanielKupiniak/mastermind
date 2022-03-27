@@ -1,83 +1,83 @@
 #include <gtest/gtest.h>
 
+#include "PegMatcher.h"
 #include "PegPattern.h"
-#include "Score.h"
 #include "utils.h"
 
 using namespace MasterMind;
 
-TEST(Score, OneBlack) {
+TEST(PegMatcher, OneBlack) {
   PegPattern entered(Peg::Black, Peg::Red, Peg::Yellow, Peg::Red);
-  Score score(Peg::Black, Peg::Purple, Peg::Green, Peg::Orange);
+  PegMatcher pegMatcher(Peg::Black, Peg::Purple, Peg::Green, Peg::Orange);
   Result expectedResult = {KeyPeg::Black, KeyPeg::Missed, KeyPeg::Missed,
                            KeyPeg::Missed};
-  score.hit(entered);
-  auto actualResult = score.getResult();
+  pegMatcher.run(entered);
+  auto actualResult = pegMatcher.getResult();
   EXPECT_EQ(expectedResult, actualResult);
 }
 
-TEST(Score, OneWhite) {
+TEST(PegMatcher, OneWhite) {
   PegPattern entered(Peg::Red, Peg::Green, Peg::Yellow, Peg::Green);
-  Score score(Peg::Black, Peg::Purple, Peg::Red, Peg::Orange);
+  PegMatcher pegMatcher(Peg::Black, Peg::Purple, Peg::Red, Peg::Orange);
 
   Result expected = {KeyPeg::White, KeyPeg::Missed, KeyPeg::Missed,
                      KeyPeg::Missed};
-  score.hit(entered);
-  auto actualResult = score.getResult();
+  pegMatcher.run(entered);
+  auto actualResult = pegMatcher.getResult();
   EXPECT_EQ(expected, actualResult);
 }
 
-TEST(Score, OneWhiteOneBlack) {
+TEST(PegMatcher, OneWhiteOneBlack) {
   PegPattern entered(Peg::Red, Peg::Green, Peg::Red, Peg::Black);
-  Score score(Peg::Black, Peg::Purple, Peg::Red, Peg::Orange);
+  PegMatcher pegMatcher(Peg::Black, Peg::Purple, Peg::Red, Peg::Orange);
 
   Result expected = {KeyPeg::Black, KeyPeg::White, KeyPeg::Missed,
                      KeyPeg::Missed};
-  score.hit(entered);
-  auto actualResult = score.getResult();
+  pegMatcher.run(entered);
+  auto actualResult = pegMatcher.getResult();
   EXPECT_EQ(expected, actualResult);
 }
 
-TEST(Score, TwoWhiteTwoBlack) {
+TEST(PegMatcher, TwoWhiteTwoBlack) {
   PegPattern entered(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
-  Score score(Peg::Black, Peg::Red, Peg::Green, Peg::Orange);
+  PegMatcher pegMatcher(Peg::Black, Peg::Red, Peg::Green, Peg::Orange);
 
   Result expected = {KeyPeg::Black, KeyPeg::Black, KeyPeg::White,
                      KeyPeg::White};
-  score.hit(entered);
-  auto actualResult = score.getResult();
+  pegMatcher.run(entered);
+  auto actualResult = pegMatcher.getResult();
   EXPECT_EQ(expected, actualResult);
 }
 
-TEST(Score, FourBlack) {
+TEST(PegMatcher, FourBlack) {
   PegPattern entered(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
-  Score score(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
+  PegMatcher pegMatcher(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
 
   Result expected = {KeyPeg::Black, KeyPeg::Black, KeyPeg::Black,
                      KeyPeg::Black};
-  score.hit(entered);
-  auto actualResult = score.getResult();
+  pegMatcher.run(entered);
+  auto actualResult = pegMatcher.getResult();
   EXPECT_EQ(expected, actualResult);
 }
 
-TEST(Score, FourWhitek) {
+TEST(PegMatcher, FourWhitek) {
   PegPattern entered(Peg::Orange, Peg::Black, Peg::Red, Peg::Green);
-  Score score(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
+  PegMatcher pegMatcher(Peg::Black, Peg::Orange, Peg::Green, Peg::Red);
 
   Result expected = {KeyPeg::White, KeyPeg::White, KeyPeg::White,
                      KeyPeg::White};
-  score.hit(entered);
-  auto actualResult = score.getResult();
+  pegMatcher.run(entered);
+  auto actualResult = pegMatcher.getResult();
   EXPECT_EQ(expected, actualResult);
 }
 
-TEST(Score, FourNone) {
+TEST(PegMatcher, FourNone) {
   PegPattern entered(Peg::Orange, Peg::Orange, Peg::Green, Peg::Green);
-  Score score(Peg::Yellow, Peg::Black, Peg::Purple, Peg::Red);
+  PegMatcher pegMatcher(Peg::Yellow, Peg::Black, Peg::Purple, Peg::Red);
 
   Result expected = {KeyPeg::Missed, KeyPeg::Missed, KeyPeg::Missed,
                      KeyPeg::Missed};
-  score.hit(entered);
-  auto actualResult = score.getResult();
+  pegMatcher.run(entered);
+  auto actualResult = pegMatcher.getResult();
   EXPECT_EQ(expected, actualResult);
 }

@@ -1,11 +1,12 @@
-#include "Score.h"
+#include "PegMatcher.h"
 
 #include <algorithm>
 #include <set>
 
 namespace MasterMind {
-Score::Score(Peg c0, Peg c1, Peg c2, Peg c3) : mExpected{c0, c1, c2, c3} {}
-void Score::hit(PegPattern& givenPeg) {
+PegMatcher::PegMatcher(Peg c0, Peg c1, Peg c2, Peg c3)
+    : mExpected{c0, c1, c2, c3} {}
+void PegMatcher::run(PegPattern& givenPeg) {
   mResult.clear();
 
   auto matches = matchedPegs(givenPeg);
@@ -14,9 +15,9 @@ void Score::hit(PegPattern& givenPeg) {
 
   sortResult();
 }
-Score::Score(const PegPattern& secret) : mExpected(secret) {}
+PegMatcher::PegMatcher(const PegPattern& secret) : mExpected(secret) {}
 
-std::set<Pos> Score::matchedPegs(const PegPattern& givenPeg) {
+std::set<Pos> PegMatcher::matchedPegs(const PegPattern& givenPeg) {
   std::set<Pos> matches;
   for (auto& e : givenPeg.getPegSeq()) {
     auto pos = mExpected.find(e.first);
@@ -27,8 +28,8 @@ std::set<Pos> Score::matchedPegs(const PegPattern& givenPeg) {
   return matches;
 }
 
-void Score::calculateResult(const std::set<Pos>& matches,
-                            const PegPattern& givenPeg) {
+void PegMatcher::calculateResult(const std::set<Pos>& matches,
+                                 const PegPattern& givenPeg) {
   for (auto& e : matches) {
     if (givenPeg.at(e) == mExpected.at(e)) {
       mResult.push_back(KeyPeg::Black);
@@ -39,7 +40,7 @@ void Score::calculateResult(const std::set<Pos>& matches,
   }
 }
 
-void Score::sortResult() {
+void PegMatcher::sortResult() {
   auto fillMissed = mExpected.size() - mResult.size();
   for (size_t i = 0; i < fillMissed; i++) {
     mResult.push_back(KeyPeg::Missed);
@@ -47,5 +48,5 @@ void Score::sortResult() {
   std::sort(mResult.begin(), mResult.end(), std::less<KeyPeg>());
 }
 
-Result Score::getResult() const { return mResult; }
+Result PegMatcher::getResult() const { return mResult; }
 }  // namespace MasterMind

@@ -9,7 +9,7 @@
 #include "utils.h"
 using namespace MasterMind;
 
-TEST(Board, PrintScore) {
+TEST(Board, PrintPegMatcher) {
   Result result = {KeyPeg::White, KeyPeg::Black, KeyPeg::Missed, KeyPeg::White};
   Board board;
 

@@ -1,7 +1,7 @@
 add_executable(mastermind
     main.cpp
     PegPattern.cxx
-    Score.cxx
+    PegMatcher.cxx
     Board.cxx)
 
 # target_link_libraries(

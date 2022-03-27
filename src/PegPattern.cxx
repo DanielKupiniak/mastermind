@@ -19,14 +19,6 @@ Pos PegPattern::find(const Peg& peg) {
   return Pos::None;
 }
 
-bool PegPattern::isUnique() const {
-  std::set<Peg> uniqueSeq;
-  for (auto& e : mPegSeq) {
-    uniqueSeq.insert(e.first);
-  }
-  return uniqueSeq.size() == mPegSeq.size();
-}
-
 Peg PegPattern::at(const Pos& pos) const {
   return mPegSeq.at(static_cast<int>(pos)).first;
 }

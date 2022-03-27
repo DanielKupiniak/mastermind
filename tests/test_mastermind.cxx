@@ -1,45 +1,14 @@
 #include <gtest/gtest.h>
 
 #include <algorithm>
-#include <array>
 #include <functional>
 #include <set>
 #include <utility>
 
-enum class Peg { Red, Green, Blue, Black, Orange, Yellow };
-enum class Pos { C0, C1, C2, C3, None };
-enum class Result { Black, White, Missed };
+#include "Peg.h"
+#include "utils.h"
 
-using Cos = std::pair<Peg, Pos>;
-
-class CodePeg {
- private:
-  std::array<Cos, 4> mCodePeg;
-
- public:
-  CodePeg(Peg c0, Peg c1, Peg c2, Peg c3)
-      : mCodePeg{{{c0, Pos::C0}, {c1, Pos::C1}, {c2, Pos::C2}, {c3, Pos::C3}}} {
-  }
-
-  Pos match(const Cos& cos) {
-    for (auto& e : mCodePeg) {
-      if (cos.first == e.first) {
-        return e.second;
-      }
-    }
-    return Pos::None;
-  }
-
-  bool isUnique() {
-    std::set<Peg> uniqueSeq;
-    for (auto& e : mCodePeg) {
-      uniqueSeq.insert(e.first);
-    }
-    return uniqueSeq.size() == mCodePeg.size();
-  }
-
-  std::array<Cos, 4> getCos() const { return mCodePeg; }
-};
+using namespace MasterMind;
 
 class Score {
  private:

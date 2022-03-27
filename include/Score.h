@@ -17,6 +17,7 @@ class Score {
 
  public:
   Score(Peg c0, Peg c1, Peg c2, Peg c3);
+  Score(const PegPattern& pegPattern);
   void hit(PegPattern& codePeg);
   Result getResult() const;
 };

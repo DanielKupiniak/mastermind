@@ -14,6 +14,7 @@ void Score::hit(PegPattern& givenPeg) {
 
   sortResult();
 }
+Score::Score(const PegPattern& secret) : mExpected(secret) {}
 
 std::set<Pos> Score::matchedPegs(const PegPattern& givenPeg) {
   std::set<Pos> matches;

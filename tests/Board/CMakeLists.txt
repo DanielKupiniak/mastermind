@@ -1,7 +1,7 @@
 add_executable(test_Board
 test_Board.cxx
+${PROJECT_SOURCE_DIR}/src/Board.cxx
 ${PROJECT_SOURCE_DIR}/src/PegPattern.cxx
-${PROJECT_SOURCE_DIR}/src/Score.cxx
 )
 
 target_link_libraries(
